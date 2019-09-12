@@ -29,12 +29,12 @@ const useAuthContext = (): [State, Dispatch<Actions>] => [
   useAuthDispatch(),
 ];
 
-const useAuth = (hash: string) => {
+const useAuth = () => {
   const [state, dispatch] = useAuthContext();
   const attemptRenewal = useRef(true);
 
-  useEffect(() => {
-    if (/access_token|id_token|error/.test(hash)) {
+  useEffect(
+    function getTokens() {
       const { accessToken, idToken } = authenticate();
       dispatch({
         type: ActionTypes.SetTokens,
@@ -43,22 +43,26 @@ const useAuth = (hash: string) => {
           idToken,
         },
       });
-    }
-  }, [dispatch, hash]);
+    },
+    [dispatch]
+  );
 
-  useEffect(() => {
-    if (attemptRenewal.current) {
-      attemptRenewal.current = false;
-      const { accessToken, idToken } = renewSession();
-      dispatch({
-        type: ActionTypes.SetTokens,
-        payload: {
-          accessToken,
-          idToken,
-        },
-      });
-    }
-  }, [dispatch]);
+  useEffect(
+    function renewUserSession() {
+      if (attemptRenewal.current) {
+        attemptRenewal.current = false;
+        const { accessToken, idToken } = renewSession();
+        dispatch({
+          type: ActionTypes.SetTokens,
+          payload: {
+            accessToken,
+            idToken,
+          },
+        });
+      }
+    },
+    [dispatch]
+  );
 
   return { isAuthenticated: state.isAuthenticated };
 };
