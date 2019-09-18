@@ -6,6 +6,11 @@ interface State {
   isAuthenticated: boolean;
 }
 
+enum LocalStorageTokens {
+  Access = 'MY_ACCESS_TOKEN',
+  ID = 'MY_ID_TOKEN',
+}
+
 const reducer = (state: State, action: Actions): State => {
   switch (action.type) {
     case ActionTypes.SetTokens: {
@@ -33,4 +38,4 @@ const reducer = (state: State, action: Actions): State => {
   }
 };
 
-export { State, reducer };
+export { State, reducer, LocalStorageTokens };

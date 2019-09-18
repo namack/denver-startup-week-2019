@@ -13,6 +13,7 @@
     "resolveJsonModule": true,
     "rootDir": "src",
     "outDir": "dist",
+    "baseUrl": ".",
     "lib": ["es2017", "dom"],
     "sourceMap": true,
     "jsx": "react",
@@ -27,7 +28,7 @@
   "include": ["src","json"],
   "exclude": [
     "node_modules",
-    "dist",
+    "build",
     "**/*.test.ts",
     "**/*.test.tsx"
   ]

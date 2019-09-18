@@ -1,10 +1,6 @@
 import { Dispatch, useEffect } from 'react';
 import { Actions, ActionTypes } from './actions';
-
-enum LocalStorageTokens {
-  Access = 'MY_ACCESS_TOKEN',
-  ID = 'MY_ID_TOKEN',
-}
+import { LocalStorageTokens } from './reducer';
 
 const useLocalStorageTokens = (dispatch: Dispatch<Actions>) => {
   useEffect(() => {
@@ -12,13 +8,15 @@ const useLocalStorageTokens = (dispatch: Dispatch<Actions>) => {
       localStorage.getItem(LocalStorageTokens.Access) || '';
     const idToken: string = localStorage.getItem(LocalStorageTokens.ID) || '';
 
-    dispatch({
-      type: ActionTypes.SetTokens,
-      payload: {
-        accessToken,
-        idToken,
-      },
-    });
+    if (accessToken.length > 0 && idToken.length > 0) {
+      dispatch({
+        type: ActionTypes.SetTokens,
+        payload: {
+          accessToken,
+          idToken,
+        },
+      });
+    }
   }, [dispatch]);
 };
 

@@ -31,21 +31,7 @@ const useAuthContext = (): [State, Dispatch<Actions>] => [
 
 const useAuth = () => {
   const [state, dispatch] = useAuthContext();
-  const attemptRenewal = useRef(true);
-
-  useEffect(
-    function getTokens() {
-      const { accessToken, idToken } = authenticate();
-      dispatch({
-        type: ActionTypes.SetTokens,
-        payload: {
-          accessToken,
-          idToken,
-        },
-      });
-    },
-    [dispatch]
-  );
+  const attemptRenewal = useRef(false);
 
   useEffect(
     function renewUserSession() {
@@ -64,7 +50,21 @@ const useAuth = () => {
     [dispatch]
   );
 
-  return { isAuthenticated: state.isAuthenticated };
+  const login = () => {
+    const { accessToken, idToken } = authenticate();
+    dispatch({
+      type: ActionTypes.SetTokens,
+      payload: {
+        accessToken,
+        idToken,
+      },
+    });
+  };
+
+  return {
+    isAuthenticated: state.isAuthenticated,
+    login,
+  };
 };
 
 export { useAuthState, useAuthDispatch, useAuthContext, useAuth };
