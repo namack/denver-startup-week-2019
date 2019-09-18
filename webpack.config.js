@@ -11,7 +11,7 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     chunkFilename: '[name].bundle.js',
-    path: path.join(__dirname, './build'),
+    path: path.join(__dirname, './docs'),
     publicPath: '/',
   },
   devtool: 'inline-source-map',

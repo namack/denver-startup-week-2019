@@ -2,8 +2,8 @@
   "name": "dsw-2019",
   "version": "0.0.1",
   "scripts": {
-    "build": "trash build; webpack",
-    "start": "http-server ./build -p 8100"
+    "build": "trash docs; webpack",
+    "start": "http-server ./docs -p 8100"
   },
   "dependencies": {
     "react": "16.9.0",
