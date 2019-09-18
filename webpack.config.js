@@ -12,7 +12,7 @@ module.exports = {
     filename: '[name].bundle.js',
     chunkFilename: '[name].bundle.js',
     path: path.join(__dirname, './dist'),
-    publicPath: '/',
+    publicPath: '/denver-startup-week-2019',
   },
   devtool: 'inline-source-map',
   resolve: {
