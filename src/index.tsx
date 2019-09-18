@@ -6,7 +6,6 @@ import { useAuth, useAuthDispatch } from './state/Auth';
 import * as CSS from 'csstype';
 
 const App = () => {
-  useAuth();
   const { backgroundColor } = useProfileContext();
   // Can use either custom wrapped hook or dispatch directly
   const { isAuthenticated, login } = useAuth();
