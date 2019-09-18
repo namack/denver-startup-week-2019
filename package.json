@@ -2,8 +2,9 @@
   "name": "dsw-2019",
   "version": "0.0.1",
   "scripts": {
-    "build": "trash docs; webpack",
-    "start": "http-server ./docs -p 8100"
+    "build": "trash dist; webpack",
+    "deploy": "gh-pages -d dist",
+    "start": "http-server ./dist -p 8100"
   },
   "dependencies": {
     "react": "16.9.0",
@@ -22,6 +23,7 @@
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^2.0.1",
+    "gh-pages": "^2.1.1",
     "html-webpack-plugin": "^3.2.0",
     "html-webpack-template": "^6.2.0",
     "http-server": "^0.11.1",
