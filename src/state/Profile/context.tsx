@@ -3,7 +3,7 @@ import { FunctionComponent, useState, useEffect } from 'react';
 import { useAuthState } from '../Auth/hooks';
 
 interface ProfileContextValue {
-  backgroundColor: string;
+  danger: boolean;
 }
 
 const ProfileContext = createContext<ProfileContextValue | undefined>(
@@ -13,19 +13,19 @@ const ProfileContext = createContext<ProfileContextValue | undefined>(
 const ProfileProvider: FunctionComponent<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [backgroundColor, setBackgroundColor] = useState('red');
+  const [danger, setDanger] = useState(true);
   const { isAuthenticated } = useAuthState();
 
   useEffect(() => {
     if (isAuthenticated) {
-      setBackgroundColor('green');
+      setDanger(false);
     } else {
-      setBackgroundColor('red');
+      setDanger(true);
     }
   }, [isAuthenticated]);
 
   return (
-    <ProfileContext.Provider value={{ backgroundColor }}>
+    <ProfileContext.Provider value={{ danger }}>
       {children}
     </ProfileContext.Provider>
   );
@@ -39,7 +39,7 @@ const useProfileContext = () => {
   }
 
   return {
-    backgroundColor: context.backgroundColor,
+    danger: context.danger,
   };
 };
 

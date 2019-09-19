@@ -6,13 +6,13 @@ import { useAuth, useAuthDispatch } from './state/Auth';
 import * as CSS from 'csstype';
 
 const App = () => {
-  const { backgroundColor } = useProfileContext();
+  const { danger } = useProfileContext();
   // Can use either custom wrapped hook or dispatch directly
   const { isAuthenticated, login } = useAuth();
   const authDispatch = useAuthDispatch();
 
   const appStyle: CSS.Properties = {
-    backgroundColor,
+    backgroundColor: danger ? 'red' : 'green',
     height: '100vh',
   };
 
